@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devpi
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: devpi
+          image: ghcr.io/larsks/devpi:42843ba7
+          ports:
+            - containerPort: 3141
+              name: http
+          volumeMounts:
+            - name: devpi-data
+              mountPath: /data
+      volumes:
+        - name: devpi-data
+          persistentVolumeClaim:
+            claimName: devpi-data

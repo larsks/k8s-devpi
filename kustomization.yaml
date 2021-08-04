@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: devpi
+
+commonLabels:
+  app.kubernetes.io/name: devpi
+
+resources:
+- namespaces/devpi.yaml
+- deployments/devpi.yaml
+- persistentvolumeclaims/devpi-data.yaml
+- services/devpi.yaml
+- ingress.yaml
